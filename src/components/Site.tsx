@@ -6,6 +6,8 @@ import {PageThree} from "./pages/PageThree";
 import {Navigate, NavLink, Route, Routes} from 'react-router-dom';
 import {Error404} from "./pages/Error404";
 import {S} from "./pages/__styles";
+import {Page} from "./pages/Page";
+import {dataState} from "../data/dataState";
 
 
 
@@ -18,16 +20,16 @@ export const Site = () => {
                     {/*<div><NavLink className={({isActive})=>isActive ? styles.active : styles.navlink} to={'/page1'}>Page1</NavLink></div>*/}
                     {/*<div><NavLink className={({isActive})=>isActive ? styles.active : styles.navlink} to={'/page2'}>Page2</NavLink></div>*/}
                     {/*<div><NavLink className={({isActive})=>isActive ? styles.active : styles.navlink} to={'/page3'}>Page3</NavLink></div>*/}
-                    <S.NavWrapper><NavLink to={'/page1'}>Page1</NavLink></S.NavWrapper>
-                    <S.NavWrapper><NavLink to={'/page2'}>Page2</NavLink></S.NavWrapper>
-                    <S.NavWrapper><NavLink to={'/page3'}>Page3</NavLink></S.NavWrapper>
+                    <S.NavWrapper><NavLink to={'/page/0'}>Page1</NavLink></S.NavWrapper>
+                    <S.NavWrapper><NavLink to={'/page/1'}>Page2</NavLink></S.NavWrapper>
+                    <S.NavWrapper><NavLink to={'/page/2'}>Page3</NavLink></S.NavWrapper>
                 </div>
                 <div className={styles.content}>
                     <Routes>
                         <Route path={'/'} element={<Navigate to={'/page1'}/>}/>
-                        <Route path={'/page1'} element={<PageOne/>}/>
-                        <Route path={'/page2'} element={<PageTwo/>}/>
-                        <Route path={'/page3'} element={<PageThree/>}/>
+                        {/*<Route path={'/page1'} element={<PageOne/>}/>*/}
+                        {/*<Route path={'/page2'} element={<PageTwo/>}/>*/}
+                        <Route path={'/page/:id'} element={<Page pages={dataState.pages}/>}/>
                         <Route path={'/*'} element={<Error404/>}/>
                     </Routes>
 
