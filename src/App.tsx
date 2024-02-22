@@ -189,8 +189,8 @@ function App() {
         }*/
         setTodos(todos.map(el=>el.todolistID === todolistId ? {...el, filter: value}: el))
     }
-    function removeTodolist(id: string) {
-        setTodos(todos.filter(el=>el.todolistID !== id))
+    function removeTodolist(todolistID: string) {
+        setTodos(todos.filter(el=>el.todolistID !== todolistID))
     }
 
     //setTodos(todos.map(el=> el.todolistID === todolistId ? {...el, title}: el)) // логика для функции изменения заголовка Todolist
