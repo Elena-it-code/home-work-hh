@@ -171,13 +171,9 @@ function App() {
         setTodos(todos.map(el=>el.todolistID === todolistId ? {...el, tasks:el.tasks.filter(t=>t.taskId !== id)} : el))
     }
     function addTask(title: string, todolistId: string) {
-        /*let task = {id: v1(), title: title, isDone: false};
-        //достанем нужный массив по todolistId:
-        let todolistTasks = tasks[todolistId];
-        // перезапишем в этом объекте массив для нужного тудулиста копией, добавив в начало новую таску:
-        tasks[todolistId] = [task, ...todolistTasks];
-        // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
-        setTasks({...tasks});*/
+        let newTask = {taskId: v1(), title: title, isDone: false};
+        setTodos(todos.map(el=>el.todolistID === todolistId ? {...el, tasks: [...el.tasks, newTask]} : el))
+
     }
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
         /*//достанем нужный массив по todolistId:
@@ -206,6 +202,8 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});*/
     }
+
+    //setTodos(todos.map(el=> el.todolistID === todolistId ? {...el, title}: el)) // логика для функции изменения заголовка Todolist
 
     return (
         <div className="App">
