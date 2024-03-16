@@ -1,22 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink, Outlet} from 'react-router-dom';
 import './App.css';
 import {Site} from "./components/Site";
 import styles from "./components/Site.module.css";
 import {S} from "./components/pages/__styles";
+import {useWindowSize} from "./helpers/useWindowSize";
 
 
 function App() {
+    //const [burger, setBurger] = useState(false) // стэйт для отслеживания изменения меню в burger
+
+    const size = useWindowSize()
+
     return (
         <div>
             <div className={styles.header}><h1>HEADER</h1></div>
             {/* подтянули шапку для сайта*/}
             <div className={styles.body}> {/*стили для body*/}
-                <div className={styles.nav}> {/*подтянули наши кнопки правый сайдбар*/}
+                {size > 900 // установили зависимость размер экрана
+                    ? <div className={styles.nav}> {/*подтянули наши кнопки правый сайдбар*/}
                     <S.NavWrapper><NavLink to={'/page/0'}>Page1</NavLink></S.NavWrapper>
                     <S.NavWrapper><NavLink to={'/page/1'}>Page2</NavLink></S.NavWrapper>
                     <S.NavWrapper><NavLink to={'/page/2'}>Page3</NavLink></S.NavWrapper>
-                </div>глубокая копия
+                    <S.NavWrapper><NavLink to={'/page/protected'}>Protected Page</NavLink></S.NavWrapper>
+                </div>
+                : <div>☰</div>} {/*по идее сюда ставим значок бургера*/}
                 <div className={styles.content}> {/*стили для страниц*/}
                     <Outlet/> {/* Outlet это наш children: [] из файла router.tsx*/} {/* ВСЕГДА МЕНЯЕТСЯ ВНУТРЕННОСТЬ СТРАНИЦЫ КОНТЕНТ СОГЛАСНО ВЫБРАННОЙ СТРАНИЦЫ ПОЛЬЗОВАТЕЛЕМ*/}
                 </div>
